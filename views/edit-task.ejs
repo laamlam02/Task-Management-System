@@ -1,0 +1,32 @@
+<%- include('partials/header') %>
+
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">Edit Task</h2>
+
+  <form action="/tasks/edit/<%= task._id %>" method="POST" class="bg-white p-4 rounded shadow-sm">
+    <div class="mb-3">
+      <label for="title" class="form-label">Task Title</label>
+      <input type="text" name="title" id="title" class="form-control" value="<%= task.title %>" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea name="description" id="description" class="form-control"><%= task.description %></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="dueDate" class="form-label">Due Date</label>
+      <input type="date" name="dueDate" id="dueDate" class="form-control" value="<%= task.dueDate ? task.dueDate.toISOString().split('T')[0] : '' %>">
+    </div>
+
+    <div class="mb-3 form-check">
+      <input type="checkbox" name="completed" id="completed" class="form-check-input" <%= task.completed ? 'checked' : '' %>>
+      <label for="completed" class="form-check-label">Completed</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Task</button>
+    <a href="/tasks" class="btn btn-secondary ms-2">Back</a>
+  </form>
+</div>
+
+<%- include('partials/footer') %>
